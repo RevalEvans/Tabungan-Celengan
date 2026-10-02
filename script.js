@@ -74,7 +74,6 @@ function showApp() {
         selectSaver.innerHTML = '';
 
         if (roleSekarang === 'yansen') {
-            // Jika Reval (Yan Sen) yang login, munculkan kembali ke-4 pilihan lengkap
             selectSaver.innerHTML = `
                 <option value="Yan Sen">👨‍💻 Yan Sen (Reval)</option>
                 <option value="Cece">👩‍🎨 Cece (Chelsea)</option>
@@ -83,7 +82,6 @@ function showApp() {
             `;
             selectSaver.value = "Yan Sen"; 
         } else {
-            // Jika selain Reval, opsi user lain dihilangkan total dari list
             const userAktif = DAFTAR_USER.find(u => u.namaLengkap === namaUserSekarang);
             const emojiUser = userAktif ? userAktif.emoji : "👤";
             
@@ -253,26 +251,32 @@ function renderData() {
     if (totalNettoCouple > 0) {
         yansenPercent = Math.round((yansenTotal / totalNettoCouple) * 100);
         cecePercent = Math.round((ceceTotal / totalNettoCouple) * 100);
+    }
+
+    const barYansen = document.getElementById('chartBarYansen');
+    const barCece = document.getElementById('chartBarCece');
+
+    if (barYansen && barCece) {
+        barYansen.style.width = (totalNettoCouple === 0 ? 50 : yansenPercent) + '%';
+        barYansen.innerText = `Rp ${yansenTotal.toLocaleString('id-ID')} (${yansenPercent}%)`;
+
+        barCece.style.width = (totalNettoCouple === 0 ? 50 : cecePercent) + '%';
+        barCece.innerText = `Rp ${ceceTotal.toLocaleString('id-ID')} (${cecePercent}%)`;
+    }
 }
-const barYansen = document.getElementById('chartBarYansen');
-const barCece = document.getElementById('chartBarCece');
-barYansen.style.width = (totalNettoCouple === 0 ? 50 : yansenPercent) + '%';
-barYansen.innerText = Rp ${yansenTotal.toLocaleString('id-ID')} (${yansenPercent}%);
-barCece.style.width = (totalNettoCouple === 0 ? 50 : cecePercent) + '%';
-barCece.innerText = Rp ${ceceTotal.toLocaleString('id-ID')} (${cecePercent}%);
-}
+
 // 6. ANIMASI HATI
 function createHeartsExplosion() {
-const container = document.getElementById('hearts-container');
-const heartEmojis = ['💖', '❤️', '💕', '💝', '🐷', '💰'];
-for (let i = 0; i < 15; i++) {
-const heart = document.createElement('div');
-heart.classList.add('floating-heart');
-heart.innerText = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
-heart.style.left = Math.random() * 100 + 'vw';
-heart.style.animationDelay = Math.random() * 0.4 + 's';
-heart.style.fontSize = Math.random() * 20 + 20 + 'px';
-container.appendChild(heart);
-setTimeout(() => { heart.remove(); }, 2500);
-}
+    const container = document.getElementById('hearts-container');
+    const heartEmojis = ['💖', '❤️', '💕', '💝', '🐷', '💰'];
+    for (let i = 0; i < 15; i++) {
+        const heart = document.createElement('div');
+        heart.classList.add('floating-heart');
+        heart.innerText = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDelay = Math.random() * 0.4 + 's';
+        heart.style.fontSize = Math.random() * 20 + 20 + 'px';
+        container.appendChild(heart);
+        setTimeout(() => { heart.remove(); }, 2500);
+    }
 }
