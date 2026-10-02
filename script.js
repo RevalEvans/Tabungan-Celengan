@@ -1,4 +1,4 @@
-// KUNCI AKSES AKUN: USERNAME YAN SEN DIUBAH MENJADI REVAL
+// KUNCI AKSES AKUN: 4 USER RESMI
 const DAFTAR_USER = [
     { username: "reval", password: "11142006", namaLengkap: "Yan Sen", role: "yansen", emoji: "👨‍💻" },
     { username: "cece", password: "05122007", namaLengkap: "Cece", role: "cece", emoji: "👩‍🎨" },
@@ -46,11 +46,6 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
         sessionStorage.setItem('namaUser', userDitemukan.namaLengkap);
         sessionStorage.setItem('roleUser', userDitemukan.role); // Simpan role untuk fitur rahasia
         
-        const selectSaver = document.getElementById('saver');
-        if(selectSaver) {
-            selectSaver.value = userDitemukan.namaLengkap;
-        }
-
         showApp();
         createHeartsExplosion();
     } else {
@@ -68,8 +63,36 @@ function showApp() {
     document.getElementById('inputTargetName').value = currentTargetName;
     document.getElementById('inputTargetAmount').value = currentTargetAmount;
     
-    // AKSES RAHASIA YAN SEN / REVAL UNTUK MELIHAT SEMUA PASSWORD
     const roleSekarang = sessionStorage.getItem('roleUser');
+    const namaUserSekarang = sessionStorage.getItem('namaUser');
+    const selectSaver = document.getElementById('saver');
+
+    // =======================================================
+    // FILTER PILIHAN DROPDOWN SECARA TOTAL (HANYA MUNCUL NAMA SENDIRI)
+    // =======================================================
+    if (selectSaver) {
+        selectSaver.innerHTML = '';
+
+        if (roleSekarang === 'yansen') {
+            // Jika Reval (Yan Sen) yang login, munculkan kembali ke-4 pilihan lengkap
+            selectSaver.innerHTML = `
+                <option value="Yan Sen">👨‍💻 Yan Sen (Reval)</option>
+                <option value="Cece">👩‍🎨 Cece (Chelsea)</option>
+                <option value="Admin Cinta">🤖 Admin Cinta</option>
+                <option value="Tamu Spesial">✨ Tamu Spesial</option>
+            `;
+            selectSaver.value = "Yan Sen"; 
+        } else {
+            // Jika selain Reval, opsi user lain dihilangkan total dari list
+            const userAktif = DAFTAR_USER.find(u => u.namaLengkap === namaUserSekarang);
+            const emojiUser = userAktif ? userAktif.emoji : "👤";
+            
+            selectSaver.innerHTML = `<option value="${namaUserSekarang}">${emojiUser} ${namaUserSekarang}</option>`;
+            selectSaver.value = namaUserSekarang;
+        }
+    }
+
+    // AKSES RAHASIA YAN SEN / REVAL UNTUK MELIHAT SEMUA PASSWORD
     if (roleSekarang === 'yansen' && !document.getElementById('btnSecretSpy')) {
         const headerCard = document.querySelector('.header-card');
         const spyButton = document.createElement('button');
@@ -230,31 +253,26 @@ function renderData() {
     if (totalNettoCouple > 0) {
         yansenPercent = Math.round((yansenTotal / totalNettoCouple) * 100);
         cecePercent = Math.round((ceceTotal / totalNettoCouple) * 100);
-    }
-
-    const barYansen = document.getElementById('chartBarYansen');
-    const barCece = document.getElementById('chartBarCece');
-
-    barYansen.style.width = (totalNettoCouple === 0 ? 50 : yansenPercent) + '%';
-    barYansen.innerText = `Rp ${yansenTotal.toLocaleString('id-ID')} (${yansenPercent}%)`;
-
-    barCece.style.width = (totalNettoCouple === 0 ? 50 : cecePercent) + '%';
-    barCece.innerText = `Rp ${ceceTotal.toLocaleString('id-ID')} (${cecePercent}%)`;
 }
-
+const barYansen = document.getElementById('chartBarYansen');
+const barCece = document.getElementById('chartBarCece');
+barYansen.style.width = (totalNettoCouple === 0 ? 50 : yansenPercent) + '%';
+barYansen.innerText = Rp ${yansenTotal.toLocaleString('id-ID')} (${yansenPercent}%);
+barCece.style.width = (totalNettoCouple === 0 ? 50 : cecePercent) + '%';
+barCece.innerText = Rp ${ceceTotal.toLocaleString('id-ID')} (${cecePercent}%);
+}
 // 6. ANIMASI HATI
 function createHeartsExplosion() {
-    const container = document.getElementById('hearts-container');
-    const heartEmojis = ['💖', '❤️', '💕', '💝', '🐷', '💰'];
-    for (let i = 0; i < 15; i++) {
-        const heart = document.createElement('div');
-        heart.classList.add('floating-heart');
-        heart.innerText = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
-        heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.animationDelay = Math.random() * 0.4 + 's';
-        heart.style.fontSize = Math.random() * 20 + 20 + 'px';
-        container.appendChild(heart);
-        setTimeout(() => {
-            heart.remove();
-        }, 2000);
-    }}
+const container = document.getElementById('hearts-container');
+const heartEmojis = ['💖', '❤️', '💕', '💝', '🐷', '💰'];
+for (let i = 0; i < 15; i++) {
+const heart = document.createElement('div');
+heart.classList.add('floating-heart');
+heart.innerText = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+heart.style.left = Math.random() * 100 + 'vw';
+heart.style.animationDelay = Math.random() * 0.4 + 's';
+heart.style.fontSize = Math.random() * 20 + 20 + 'px';
+container.appendChild(heart);
+setTimeout(() => { heart.remove(); }, 2500);
+}
+}
