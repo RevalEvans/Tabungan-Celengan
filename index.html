@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Celengan Cinta Reval & Chelsea 💖</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Floating Hearts Container -->
+    <div id="hearts-container"></div>
+
+    <!-- 1. HALAMAN LOGIN KARTUN -->
+    <div id="login-page" class="login-container">
+        <div class="card login-card">
+            <h2>🔒 Room Rahasia Kita 🐷</h2>
+            <p>Hanya untuk Aku, Kamu & Dia 
+                Masuk dengan akun Anda:</p>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" placeholder="Masukkan username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" placeholder="Masukkan password" required>
+                </div>
+                <button type="submit" class="btn-submit btn-login">Buka Celengan! 🔑</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 2. HALAMAN UTAMA -->
+    <div id="main-app" class="container d-none">
+        <!-- HEADER -->
+        <header class="header-card">
+            <h1>🐷 Celengan Kita ✨</h1>
+            <p>Membangun Masa Depan Bersama = Jajan dan Makan, Setetes demi Setetes udah lama juga tetap Setetes karena dipake!</p>
+            <div class="couple-names">
+                <span class="avatar">👨‍💻 Yan Sen</span>
+                <span class="heart-icon">❤️</span>
+                <span class="avatar">👩‍🎨 Cece</span>
+            </div>
+            <button id="btnLogout" class="btn-logout">Keluar Room 🚪</button>
+        </header>
+
+        <!-- PROGRESS BAR & PENGATURAN TARGET TABUNGAN -->
+        <section class="progress-section card">
+            <div class="target-title">
+                <h3>🎯 Target: <span id="targetNameText">Masa Depan</span></h3>
+                <button id="btnEditTarget" class="btn-small">⚙️ Atur Target</button>
+            </div>
+            
+            <div id="editTargetFormContainer" class="edit-target-box d-none">
+                <div class="form-group">
+                    <label for="inputTargetName">Nama Rencana / Tujuan:</label>
+                    <input type="text" id="inputTargetName" placeholder="Contoh: Beli Laptop Baru">
+                </div>
+                <div class="form-group">
+                    <label for="inputTargetAmount">Jumlah Target (Rp):</label>
+                    <input type="number" id="inputTargetAmount" placeholder="Contoh: 10000000">
+                </div>
+                <button id="btnSaveTarget" class="btn-submit btn-save-target">Simpan Target Baru 💾</button>
+            </div>
+
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progressBar" style="width: 0%;">0%</div>
+            </div>
+            <div class="progress-info">
+                <p>Target Total: <strong id="targetAmountText">Rp 50.000.000</strong></p>
+                <p>Terkumpul Netto: <strong id="totalSaved">Rp 0</strong></p>
+                <p>Sisa Target: <strong id="leftAmount">Rp 50.000.000</strong></p>
+            </div>
+        </section>
+
+        <!-- ANALISIS GRAFIK VISUAL -->
+        <section class="chart-section card">
+            <h3>📊 Grafik Kontribusi Celengan</h3>
+            <p style="margin-bottom: 15px; font-size: 0.9rem; color: #555;">Siapa nih yang celengannya paling gendut? 🤭</p>
+            <div id="visualChartContainer">
+                <!-- Placeholder Grafik Pengganti -->
+                <div class="chart-placeholder-box">
+                    <div class="chart-bar-row">
+                        <span class="chart-label">👨‍💻 Yan Sen:</span>
+                        <div class="chart-track"><div id="chartBarYansen" class="chart-fill yansen-fill" style="width: 50%">0%</div></div>
+                    </div>
+                    <div class="chart-bar-row">
+                        <span class="chart-label">👩‍🎨 Cece:</span>
+                        <div class="chart-track"><div id="chartBarCece" class="chart-fill cece-fill" style="width: 50%">0%</div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="main-content">
+            <!-- FORM INPUT TRANSAKSI (MASUK/KELUAR) -->
+            <section class="input-section card">
+                <h3>➕ / ➖ Catat Keuangan</h3>
+                <form id="savingForm">
+                    <div class="form-group">
+                        <label for="type">Jenis Transaksi</label>
+                        <select id="type" required>
+                            <option value="masuk">💰 Uang Masuk (Menabung)</option>
+                            <option value="keluar">💸 Uang Keluar (Tarik Dana)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="saver">Oleh Siapa?</label>
+                        <select id="saver" required>
+                            <option value="Yan Sen">👨‍💻 Yan Sen (Reval)</option>
+                            <option value="Cece">👩‍🎨 Cece (Chelsea)</option>
+                            <option value="Admin Cinta">🤖 Admin Cinta</option>
+                            <option value="Tamu Spesial">✨ Tamu Spesial</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="amount">Jumlah Uang (Rp)</label>
+                        <input type="number" id="amount" placeholder="Contoh: 100000" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="note">Catatan / Keperluan</label>
+                        <input type="text" id="note" placeholder="Contoh: Sisa jajan / Beli kado" required>
+                    </div>
+                    <button type="submit" class="btn-submit" id="btnSubmitForm">Simpan Ke Celengan! 🚀</button>
+                </form>
+            </section>
+
+            <!-- RIWAYAT TRANSAKSI -->
+            <section class="history-section card">
+                <h3>📜 Catatan Aktivitas Celengan</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nama</th>
+                                <th>Jumlah</th>
+                                <th>Catatan</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transactionList">
+                            <!-- Data otomatis diatur JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

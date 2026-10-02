@@ -1,0 +1,390 @@
+/* Perbaikan tautan font agar tidak memblokir JavaScript */
+@import url('https://googleapis.com');
+
+:root {
+    --bg-color: #FFF9E6;
+    --main-black: #2B2B2B;
+    --primary-pink: #FF85A2;
+    --primary-blue: #70D6FF;
+    --primary-yellow: #FFD166;
+    --primary-green: #06D6A0;
+    --card-bg: #FFFFFF;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Fredoka', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--main-black);
+    padding: 20px;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.d-none {
+    display: none !important;
+}
+
+/* Login Container */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 85vh;
+}
+
+.login-card {
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    background: #FFFEEF;
+}
+
+.login-card h2 {
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+}
+
+/* Container utama */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Efek Kartun Tebal (Neubrutalism) */
+.card {
+    background: var(--card-bg);
+    border: 4px solid var(--main-black);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 8px 8px 0px var(--main-black);
+    margin-bottom: 30px;
+}
+
+/* Header */
+.header-card {
+    background: var(--primary-pink);
+    border: 4px solid var(--main-black);
+    border-radius: 25px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 8px 8px 0px var(--main-black);
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.header-card h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 3px 3px 0px var(--primary-yellow);
+}
+
+.couple-names {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.avatar {
+    background: var(--card-bg);
+    padding: 10px 20px;
+    border: 3px solid var(--main-black);
+    border-radius: 15px;
+    font-weight: 600;
+    box-shadow: 4px 4px 0px var(--main-black);
+}
+
+.heart-icon {
+    font-size: 1.8rem;
+    animation: pulse 1s infinite alternate;
+}
+
+@keyframes pulse {
+    from { transform: scale(1); }
+    to { transform: scale(1.2); }
+}
+
+.btn-logout {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #FF6B6B;
+    border: 2px solid var(--main-black);
+    padding: 5px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 2px 2px 0px var(--main-black);
+}
+
+.btn-small {
+    background: white;
+    border: 2px solid var(--main-black);
+    padding: 4px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    box-shadow: 2px 2px 0px var(--main-black);
+}
+
+.btn-small:active, .btn-logout:active {
+    transform: translate(2px, 2px);
+    box-shadow: 0px 0px 0px var(--main-black);
+}
+
+/* Edit Target Box */
+.edit-target-box {
+    background: #FFF;
+    border: 3px dashed var(--main-black);
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.btn-save-target {
+    background: var(--primary-yellow) !important;
+}
+
+/* Progress Bar */
+.progress-section {
+    background: var(--primary-yellow);
+}
+
+.target-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.progress-bar-container {
+    background: var(--card-bg);
+    border: 4px solid var(--main-black);
+    border-radius: 20px;
+    height: 35px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 4px 4px 0px var(--main-black);
+}
+
+.progress-bar {
+    background: var(--primary-green);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--main-black);
+    font-weight: bold;
+    border-right: 4px solid var(--main-black);
+    transition: width 0.5s ease-in-out;
+    width: 0%;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    font-size: 1.1rem;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Grafik Kartun Bar */
+.chart-section {
+    background: #E8F0FE;
+}
+.chart-placeholder-box {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px 0;
+}
+.chart-bar-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.chart-label {
+    width: 120px;
+    font-weight: bold;
+}
+.chart-track {
+    flex-grow: 1;
+    background: white;
+    border: 3px solid var(--main-black);
+    border-radius: 10px;
+    height: 30px;
+    overflow: hidden;
+    box-shadow: 3px 3px 0 var(--main-black);
+}
+.chart-fill {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    font-weight: bold;
+    font-size: 0.85rem;
+    color: var(--main-black);
+    transition: width 0.4s ease-out;
+}
+.yansen-fill { background: var(--primary-blue); }
+.cece-fill { background: var(--primary-pink); }
+
+/* Layout Konten Utama */
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Form Styling */
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    border: 3px solid var(--main-black);
+    border-radius: 12px;
+    font-size: 1rem;
+    background: #FFF;
+    box-shadow: 4px 4px 0px var(--main-black);
+    outline: none;
+}
+
+input:focus, select:focus {
+    border-color: var(--primary-pink);
+    background-color: #FFFEEF;
+}
+
+.btn-submit {
+    width: 100%;
+    background: var(--primary-blue);
+    color: var(--main-black);
+    border: 3px solid var(--main-black);
+    border-radius: 15px;
+    padding: 12px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px var(--main-black);
+    margin-top: 10px;
+    transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.btn-submit:active {
+    transform: translate(4px, 4px);
+    box-shadow: 0px 0px 0px var(--main-black);
+}
+
+.btn-login {
+    background: var(--primary-green);
+}
+
+/* Tabel Riwayat */
+.table-container {
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px 10px;
+    text-align: left;
+    border-bottom: 2px dashed #DDD;
+    vertical-align: middle;
+}
+
+th {
+    border-bottom: 3px solid var(--main-black);
+    font-weight: 600;
+}
+
+.badge {
+    padding: 5px 10px;
+    border: 2px solid var(--main-black);
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.badge.yansen { background: var(--primary-blue); }
+.badge.cece { background: var(--primary-pink); }
+.badge.admin { background: var(--primary-yellow); }
+.badge.tamu { background: #E0AAFF; }
+
+.amount-plus {
+    color: #05b486;
+    font-weight: bold;
+}
+.amount-minus {
+    color: #ff4b4b;
+    font-weight: bold;
+}
+
+/* Tombol Hapus */
+.btn-delete {
+    background: #FF6B6B;
+    color: white;
+    border: 2px solid var(--main-black);
+    border-radius: 6px;
+    padding: 4px 8px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    box-shadow: 2px 2px 0px var(--main-black);
+    font-weight: bold;
+}
+
+.btn-delete:hover {
+    background: #FF4B4B;
+}
+
+.btn-delete:active {
+    transform: translate(2px, 2px);
+    box-shadow: 0px 0px 0px var(--main-black);
+}
+
+/* Animasi Efek Hati */
+#hearts-container {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 999;
+}
+
+.floating-heart {
+    position: absolute;
+    font-size: 24px;
+    animation: floatUp 2s linear forwards;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(100vh) scale(0); opacity: 1; }
+    100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+}
